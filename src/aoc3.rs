@@ -14,28 +14,28 @@ fn score(c: &char) -> i32 {
 
 fn part1() -> i32 {
     get_input(3)
-        .split("\n")
-        .map(|x| {
-            let (a, b) = x.split_at(x.len() / 2);
-            let a = a.chars().collect::<HashSet<_>>();
-            let b = b.chars().collect::<HashSet<_>>();
-            a.intersection(&b).map(score).sum::<i32>()
+        .lines()
+        .map(|line| {
+            let (left, right) = line.split_at(line.len() / 2);
+            let left = left.chars().collect::<HashSet<_>>();
+            let right = right.chars().collect::<HashSet<_>>();
+            left.intersection(&right).map(score).sum::<i32>()
         })
         .sum()
 }
 
 fn part2() -> i32 {
     get_input(3)
-        .split("\n")
-        .map(|x| x.chars().collect::<HashSet<_>>())
+        .lines()
+        .map(|line| line.chars().collect::<HashSet<_>>())
         .enumerate()
         .group_by(|(i, _)| i / 3)
         .into_iter()
-        .map(|(_, x)| x
-            .map(|(_, x)| x)
-            .reduce(|a, b| a
-                .intersection(&b)
-                .map(|x| *x)
+        .map(|(_, group)| group
+            .map(|(_, chars)| chars)
+            .reduce(|left, right| left
+                .intersection(&right)
+                .map(|c| *c)
                 .collect())
             .unwrap()
             .iter()
