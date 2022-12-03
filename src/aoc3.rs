@@ -31,8 +31,7 @@ fn part2() -> i32 {
         .enumerate()
         .group_by(|(i, _)| i / 3)
         .into_iter()
-        .map(|(_, x)| x)
-        .map(|x| x
+        .map(|(_, x)| x
             .map(|(_, x)| x)
             .reduce(|a, b| a
                 .intersection(&b)
