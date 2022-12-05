@@ -1,32 +1,37 @@
 use std::collections::BinaryHeap;
+use std::iter::Map;
+use std::str::Split;
 
 use utils::input;
 
 use crate::utils;
 
-fn parse<'a>(input: &'a str) -> impl Iterator<Item=i32> + 'a {
-    input
-        .trim()
-        .split("\n\n")
-        .map(|x| x
-            .split("\n")
-            .map(|x| x.parse::<i32>().unwrap())
-            .sum()
-        )
+type I<'a> = Map<Split<'a, &'a str>, fn(&str) -> i32>;
+
+fn part1(iter: I) -> i32
+{
+    iter.max().unwrap()
 }
 
-fn part1() -> i32 {
-    parse(&input(1))
-        .max()
-        .unwrap()
-}
-
-fn part2() -> i32 {
-    parse(&input(1))
-        .collect::<BinaryHeap<_>>()
+fn part2(iter: I) -> i32
+{
+    iter.collect::<BinaryHeap<_>>()
         .iter()
         .take(3)
         .sum()
+}
+
+fn run(f: fn(I) -> i32) -> i32
+{
+    f(
+        input(1)
+            .split("\n\n")
+            .map(|x| x
+                .lines()
+                .map(|x| x.parse::<i32>().unwrap())
+                .sum()
+            )
+    )
 }
 
 
@@ -36,11 +41,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        println!("{}", part1());
+        println!("{}", run(part1));
     }
 
     #[test]
     fn test_part2() {
-        println!("{}", part2());
+        println!("{}", run(part2));
     }
 }
