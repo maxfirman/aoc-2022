@@ -24,20 +24,20 @@ fn part2(crates: &mut Vec<Vec<char>>, n: usize, from: usize, to: usize) {
 fn run(f: fn(&mut Vec<Vec<char>>, usize, usize, usize)) -> String {
     let input = get_input(5);
     let (crates_input, instructions_input) = input.split_once("\n\n").unwrap();
-    let mut crates: Vec<Vec<char>> = vec![vec![]];
 
-    for (row, line) in crates_input.lines().rev().enumerate() {
-        if row == 0 {
-            crates.resize((line.len() + 2) / 4, vec![]);
-        } else {
-            for (i, c) in line
-                .chars()
-                .skip(1)
-                .step_by(4)
-                .enumerate()
-                .filter(|(_, c)| c.is_alphabetic()) {
-                crates[i].push(c);
-            }
+    let mut crates_input = crates_input.lines().rev();
+
+    let n = (crates_input.next().unwrap().len() + 2) / 4;
+    let mut crates: Vec<Vec<char>> = vec![vec![]; n];
+
+    for line in crates_input {
+        for (i, c) in line
+            .chars()
+            .skip(1)
+            .step_by(4)
+            .enumerate()
+            .filter(|(_, c)| c.is_alphabetic()) {
+            crates[i].push(c);
         }
     }
 
