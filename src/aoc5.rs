@@ -1,5 +1,5 @@
 use itertools::Itertools;
-use crate::data::get_input;
+use crate::utils::input;
 
 
 fn part1(crates: &mut Vec<Vec<char>>, n: usize, from: usize, to: usize) {
@@ -22,7 +22,7 @@ fn part2(crates: &mut Vec<Vec<char>>, n: usize, from: usize, to: usize) {
 }
 
 fn run(f: fn(&mut Vec<Vec<char>>, usize, usize, usize)) -> String {
-    let input = get_input(5);
+    let input = input(5);
     let (crates_input, instructions_input) = input.split_once("\n\n").unwrap();
 
     let mut crates_input = crates_input.lines().rev();

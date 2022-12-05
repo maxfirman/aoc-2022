@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 use itertools::Itertools;
-use data::get_input;
-use crate::data;
+use utils::input;
+use crate::utils;
 
 fn score(c: &char) -> i32 {
     if c.is_ascii_lowercase() {
@@ -13,7 +13,7 @@ fn score(c: &char) -> i32 {
 
 
 fn part1() -> i32 {
-    get_input(3)
+    input(3)
         .lines()
         .map(|line| {
             let (left, right) = line.split_at(line.len() / 2);
@@ -25,7 +25,7 @@ fn part1() -> i32 {
 }
 
 fn part2() -> i32 {
-    get_input(3)
+    input(3)
         .lines()
         .map(|line| line.chars().collect::<HashSet<_>>())
         .enumerate()

@@ -1,8 +1,8 @@
 use std::collections::BinaryHeap;
 
-use data::get_input;
+use utils::input;
 
-use crate::data;
+use crate::utils;
 
 fn parse<'a>(input: &'a str) -> impl Iterator<Item=i32> + 'a {
     input
@@ -16,13 +16,13 @@ fn parse<'a>(input: &'a str) -> impl Iterator<Item=i32> + 'a {
 }
 
 fn part1() -> i32 {
-    parse(&get_input(1))
+    parse(&input(1))
         .max()
         .unwrap()
 }
 
 fn part2() -> i32 {
-    parse(&get_input(1))
+    parse(&input(1))
         .collect::<BinaryHeap<_>>()
         .iter()
         .take(3)

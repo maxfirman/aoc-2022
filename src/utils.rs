@@ -2,7 +2,7 @@ use std::fs;
 
 use reqwest;
 
-pub fn get_input(day: i32) -> String {
+pub fn input(day: i32) -> String {
     let cookie = fs::read_to_string("data/cookie.txt").unwrap();
     reqwest::blocking::Client::new()
         .get(format!("https://adventofcode.com/2022/day/{}/input", day))
@@ -19,6 +19,6 @@ mod tests {
 
     #[test]
     fn test_get() {
-        println!("{}", get_input(2));
+        println!("{}", input(2));
     }
 }

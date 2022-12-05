@@ -1,5 +1,5 @@
-use data::get_input;
-use crate::data;
+use utils::input;
+use crate::utils;
 
 enum Weapon {
     Rock,
@@ -110,7 +110,7 @@ fn part2(a: &str, b: &str) -> i32 {
 }
 
 fn run(f: fn(&str, &str) -> i32) -> i32 {
-    get_input(2)
+    input(2)
         .lines()
         .map(|x| if let [a, b] = x.split_whitespace().collect::<Vec<_>>().as_slice() { (*a, *b) } else { panic!() })
         .map(|(a, b)| f(a, b))

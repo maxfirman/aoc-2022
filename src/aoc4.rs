@@ -1,6 +1,6 @@
 use itertools::Itertools;
-use data::get_input;
-use crate::data;
+use utils::input;
+use crate::utils;
 
 
 fn part1(l1: i32, h1: i32, l2: i32, h2: i32) -> bool {
@@ -12,7 +12,7 @@ fn part2(l1: i32, h1: i32, l2: i32, h2: i32) -> bool {
 }
 
 fn run(f: fn(i32, i32, i32, i32) -> bool) -> i32 {
-    get_input(4)
+    input(4)
         .lines()
         .map(|line| line
             .split(",")
