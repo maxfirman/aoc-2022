@@ -14,7 +14,7 @@ fn part2(l1: i32, h1: i32, l2: i32, h2: i32) -> bool {
 fn run(f: fn(i32, i32, i32, i32) -> bool) -> i32 {
     get_input(4)
         .lines()
-        .map(|x| x
+        .map(|line| line
             .split(",")
             .flat_map(|x| x.split("-"))
             .map(|x| x.parse::<i32>().unwrap())
