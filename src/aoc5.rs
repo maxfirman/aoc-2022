@@ -42,14 +42,18 @@ fn run(f: fn(&mut Vec<Vec<char>>, usize, usize, usize)) -> String {
     }
 
     for line in instructions_input.lines() {
-        let (_, n, _, from, _, to) = line.split_whitespace().collect_tuple().unwrap();
-        let n = n.parse::<usize>().unwrap();
-        let from = from.parse::<usize>().unwrap() - 1;
-        let to = to.parse::<usize>().unwrap() - 1;
-        f(&mut crates, n, from, to);
+        let (n, from, to) = line
+            .split_whitespace()
+            .filter_map(|x| x.parse::<usize>().ok())
+            .collect_tuple()
+            .unwrap();
+        f(&mut crates, n, from - 1, to - 1);
     }
 
-    crates.iter().filter_map(|stack| stack.last()).collect::<String>()
+    crates
+        .iter()
+        .filter_map(|stack| stack.last())
+        .collect::<String>()
 }
 
 #[cfg(test)]
