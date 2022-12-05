@@ -98,6 +98,7 @@ fn part2(a: &str, b: &str) -> i32 {
         (Win, Paper) => Scissors,
         (Win, Scissors) => Rock
     };
+
     return total_score(outcome, b);
 }
 
