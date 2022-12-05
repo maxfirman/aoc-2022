@@ -68,22 +68,16 @@ fn part1(a: &str, b: &str) -> i32 {
     let a = weapon_a(a);
     let b = weapon_b(b);
 
-    let outcome = match a {
-        Rock => match b {
-            Rock => Draw,
-            Paper => Win,
-            Scissors => Lose
-        },
-        Paper => match b {
-            Rock => Lose,
-            Paper => Draw,
-            Scissors => Win
-        },
-        Scissors => match b {
-            Rock => Win,
-            Paper => Lose,
-            Scissors => Draw
-        },
+    let outcome = match (a, &b) {
+        (Rock, Rock) => Draw,
+        (Rock, Paper) => Win,
+        (Rock, Scissors) => Lose,
+        (Paper, Rock) => Lose,
+        (Paper, Paper) => Draw,
+        (Paper, Scissors) => Win,
+        (Scissors, Rock) => Win,
+        (Scissors, Paper) => Lose,
+        (Scissors, Scissors) => Draw,
     };
 
     return total_score(outcome, b);
@@ -93,18 +87,16 @@ fn part2(a: &str, b: &str) -> i32 {
     let a = weapon_a(a);
     let outcome = outcome_b(b);
 
-    let b = match outcome {
-        Lose => match a {
-            Rock => Scissors,
-            Paper => Rock,
-            Scissors => Paper
-        },
-        Draw => a,
-        Win => match a {
-            Rock => Paper,
-            Paper => Scissors,
-            Scissors => Rock
-        },
+    let b = match (&outcome, a) {
+        (Lose, Rock) => Scissors,
+        (Lose, Paper) => Rock,
+        (Lose, Scissors) => Paper,
+        (Draw, Rock) => Rock,
+        (Draw, Paper) => Paper,
+        (Draw, Scissors) => Scissors,
+        (Win, Rock) => Paper,
+        (Win, Paper) => Scissors,
+        (Win, Scissors) => Rock
     };
     return total_score(outcome, b);
 }
