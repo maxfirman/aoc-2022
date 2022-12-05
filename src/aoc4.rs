@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use data::get_input;
 use crate::data;
 
@@ -13,14 +14,14 @@ fn part2(l1: i32, h1: i32, l2: i32, h2: i32) -> bool {
 fn run(f: fn(i32, i32, i32, i32) -> bool) -> i32 {
     get_input(4)
         .lines()
-        .map(|line| line.split_once(",").unwrap())
-        .map(|(a, b)| (
-            a.split_once("-").unwrap(),
-            b.split_once("-").unwrap()))
-        .map(|((l1, h1), (l2, h2))| (
-            (l1.parse::<i32>().unwrap(), h1.parse::<i32>().unwrap()),
-            (l2.parse::<i32>().unwrap(), h2.parse::<i32>().unwrap())))
-        .map(|((l1, h1), (l2, h2))| f(l1, h1, l2, h2) as i32)
+        .map(|x| x
+            .split(",")
+            .flat_map(|x| x.split("-"))
+            .map(|x| x.parse::<i32>().unwrap())
+            .collect_tuple::<(i32, i32, i32, i32)>()
+            .unwrap()
+        )
+        .map(|(l1, h1, l2, h2)| f(l1, h1, l2, h2) as i32)
         .sum()
 }
 
