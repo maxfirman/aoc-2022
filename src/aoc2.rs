@@ -111,8 +111,7 @@ fn part2(a: &str, b: &str) -> i32 {
 
 fn run(f: fn(&str, &str) -> i32) -> i32 {
     get_input(2)
-        .trim()
-        .split("\n")
+        .lines()
         .map(|x| if let [a, b] = x.split_whitespace().collect::<Vec<_>>().as_slice() { (*a, *b) } else { panic!() })
         .map(|(a, b)| f(a, b))
         .sum()
@@ -124,7 +123,6 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        // part1();
         println!("{}", run(part1));
     }
 
