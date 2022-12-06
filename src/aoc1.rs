@@ -1,10 +1,7 @@
 use std::collections::BinaryHeap;
 use std::iter::Map;
 use std::str::Split;
-
-use utils::input;
-
-use crate::utils;
+use crate::utils::input;
 
 type I<'a> = Map<Split<'a, &'a str>, fn(&str) -> i32>;
 

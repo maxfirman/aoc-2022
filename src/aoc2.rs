@@ -1,5 +1,4 @@
-use utils::input;
-use crate::utils;
+use crate::utils::input;
 
 enum Weapon {
     Rock,

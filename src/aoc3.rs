@@ -1,7 +1,6 @@
 use std::collections::HashSet;
 use itertools::Itertools;
-use utils::input;
-use crate::utils;
+use crate::utils::input;
 
 fn score(c: &char) -> i32 {
     if c.is_ascii_lowercase() {

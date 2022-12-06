@@ -1,6 +1,5 @@
 use itertools::Itertools;
-use utils::input;
-use crate::utils;
+use crate::utils::input;
 
 
 fn part1(l1: i32, h1: i32, l2: i32, h2: i32) -> bool {
