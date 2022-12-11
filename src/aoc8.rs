@@ -54,14 +54,13 @@ fn part2() -> u32 {
 }
 
 fn get_wood() -> Vec<Vec<u32>> {
-    let wood = input(8)
+    input(8)
         .lines()
         .map(|line| line
             .chars()
             .map(|x| x.to_digit(10).unwrap())
             .collect())
-        .collect::<Vec<Vec<u32>>>();
-    wood
+        .collect::<Vec<Vec<u32>>>()
 }
 
 #[cfg(test)]
