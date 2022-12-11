@@ -60,7 +60,7 @@ fn get_wood() -> Vec<Vec<u32>> {
             .chars()
             .map(|x| x.to_digit(10).unwrap())
             .collect())
-        .collect::<Vec<Vec<u32>>>()
+        .collect()
 }
 
 #[cfg(test)]
